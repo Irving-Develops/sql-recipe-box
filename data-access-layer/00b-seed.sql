@@ -59,7 +59,7 @@ CREATE TABLE instructions (
     specification TEXT NOT NULL,
     list_order INTEGER NOT NULL,
     recipe_id INTEGER NOT NULL,
-    FOREIGN KEY (recipe_id) REFERENCES recipes(recipe_id)
+    FOREIGN KEY (recipe_id) REFERENCES recipes(id)
 );
 
 
@@ -78,8 +78,8 @@ CREATE TABLE instructions (
 -- YOUR CODE HERE
 CREATE TABLE units_of_measure (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(20) NOT NULL,
-)
+    name VARCHAR(20) NOT NULL
+);
 
 
 
@@ -106,11 +106,11 @@ CREATE TABLE units_of_measure (
 CREATE TABLE ingredients (
     id SERIAL PRIMARY KEY,
     amount NUMERIC(5,2) NOT NULL,
-    units_of_measure_id INTEGER NOT NULL,
-    FOREIGN KEY unit_of_measure_id REFERENCES units_of_measure(id),
+    unit_of_measure_id INTEGER NOT NULL,
     food_stuff VARCHAR(500) NOT NULL,
     recipe_id INTEGER NOT NULL,
-    FOREIGN KEY (recipe_id) REFERENCES recipes(recipe_id)
+    FOREIGN KEY (unit_of_measure_id) REFERENCES units_of_measure(id),
+    FOREIGN KEY (recipe_id) REFERENCES recipes(id)
 );
 
 
